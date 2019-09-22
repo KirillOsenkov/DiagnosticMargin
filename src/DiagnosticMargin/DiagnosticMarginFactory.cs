@@ -12,6 +12,24 @@ namespace DiagnosticMargin
         IEnumerable<string> TextViewRoles { get; }
     }
 
+    /// <summary>
+    /// Defines the option to enable the diagnostic margin.
+    /// </summary>
+    [Export(typeof(EditorOptionDefinition))]
+    [Name(DiagnosticMarginFactory.DiagnosticMarginName)]
+    public sealed class DiagnosticMarginEnabled : ViewOptionDefinition<bool>
+    {
+        /// <summary>
+        /// Gets the default value, which is <c>false</c>.
+        /// </summary>
+        public override bool Default => false;
+
+        /// <summary>
+        /// Gets the default text view host value.
+        /// </summary>
+        public override EditorOptionKey<bool> Key => DiagnosticMarginFactory.DiagnosticMarginId;
+    }
+
     [Export]
     internal sealed class PanelState : IPartImportsSatisfiedNotification
     {
@@ -59,10 +77,17 @@ namespace DiagnosticMargin
     [Order(After = PredefinedMarginNames.HorizontalScrollBarContainer)]
     [ContentType("text")]
     [TextViewRole(PredefinedTextViewRoles.Interactive)]
+    [DeferCreation(OptionName = DiagnosticMarginName)]
     internal sealed class DiagnosticMarginFactory : IWpfTextViewMarginProvider
     {
         [Import]
         PanelState PanelState { get; set; }
+
+        /// <summary>
+        /// Determines whether to have a diagnostic margin.
+        /// </summary>
+        public static readonly EditorOptionKey<bool> DiagnosticMarginId = new EditorOptionKey<bool>(DiagnosticMarginName);
+        public const string DiagnosticMarginName = "TextViewHost/DiagnosticMargin";
 
         public IWpfTextViewMargin CreateMargin(IWpfTextViewHost textViewHost, IWpfTextViewMargin containerMargin)
         {
@@ -77,6 +102,7 @@ namespace DiagnosticMargin
     [MarginContainer(PredefinedMarginNames.BottomControl)]
     [ContentType("text")]
     [TextViewRole(PredefinedTextViewRoles.Interactive)]
+    [DeferCreation(OptionName = DiagnosticMarginFactory.DiagnosticMarginName)]
     internal sealed class DiagnosticMarginMenuFactory : IWpfTextViewMarginProvider
     {
         [Import]
