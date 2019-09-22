@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>DiagnosticMargin</AssemblyName>
+    <NuGetVersionEditor>16.0.127</NuGetVersionEditor>
+    <TargetFramework>net472</TargetFramework>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>DiagnosticMargin</PackageId>
+    <Authors>Kirill Osenkov</Authors>
+    <Company>Microsoft</Company>
+    <Description>A margin for the Visual Studio Editor to visualize tags, text buffer and view properties, etc.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>Editor VSEditor WPF VisualStudio Margin DiagnosticMargin TextView TextBuffer</PackageTags>
+    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.CoreUtility" Version="$(NuGetVersionEditor)" />
+    <PackageReference Include="Microsoft.VisualStudio.Text.Data" Version="$(NuGetVersionEditor)" />
+    <PackageReference Include="Microsoft.VisualStudio.Text.Logic" Version="$(NuGetVersionEditor)" />
+    <PackageReference Include="Microsoft.VisualStudio.Text.UI" Version="$(NuGetVersionEditor)" />
+    <PackageReference Include="Microsoft.VisualStudio.Text.UI.Wpf" Version="$(NuGetVersionEditor)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="**\*.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+</Project>

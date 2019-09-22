@@ -1,0 +1,22 @@
+﻿<StackPanel
+    x:Class="DiagnosticMargin.PerformancePanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:DiagnosticMargin"
+    Height="20.0"
+    Orientation="Horizontal">
+
+    <StackPanel.Resources>
+        <Style x:Key="barStyle">
+            <Setter Property="Control.Background" Value="Transparent" />
+        </Style>
+    </StackPanel.Resources>
+
+    <Button Style="{StaticResource barStyle}" Click="ScrollDownButtonClick">Scroll Down</Button>
+    <Button Style="{StaticResource barStyle}" Click="LineScrollDownButtonClick">Line Scroll Down</Button>
+    <Button Style="{StaticResource barStyle}" Click="PageScrollDownButtonClick">Page Scroll Down</Button>
+
+    <Button Style="{StaticResource barStyle}" Click="ScrollUpButtonClick">Scroll Up</Button>
+    <Button Style="{StaticResource barStyle}" Click="LineScrollUpButtonClick">Line Scroll Up</Button>
+    <Button Style="{StaticResource barStyle}" Click="PageScrollUpButtonClick">Page Scroll Up</Button>
+</StackPanel>

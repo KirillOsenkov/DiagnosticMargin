@@ -1,0 +1,17 @@
+﻿<StackPanel
+    x:Class="DiagnosticMargin.TagPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:DiagnosticMargin"
+    Background="Lavender"
+    Orientation="Vertical">
+
+    <Thumb Height="7" DragCompleted="OnThumbDragCompleted">
+        <Thumb.Cursor>SizeNS</Thumb.Cursor>
+    </Thumb>
+    <ScrollViewer x:Name="viewer" Background="Transparent">
+        <TreeView x:Name="treeView" Background="Transparent">
+        </TreeView>
+    </ScrollViewer>
+
+</StackPanel>
