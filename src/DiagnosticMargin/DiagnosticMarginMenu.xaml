@@ -2,11 +2,12 @@
     x:Class="DiagnosticMargin.DiagnosticMarginMenu"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:DiagnosticMargin">
+    xmlns:local="clr-namespace:DiagnosticMargin"
+    Background="Transparent">
 
-  <local:MarginMenuItem ToolTip="Diagnostic Margin">
+  <local:MarginMenuItem ToolTip="Diagnostic Margin" Background="Transparent">
     <local:MarginMenuItem.Header>
-      <Rectangle Width="16" Height="16" />
+      <Rectangle Width="16" Height="16" Fill="Transparent" />
     </local:MarginMenuItem.Header>
   </local:MarginMenuItem>
 </Menu>
