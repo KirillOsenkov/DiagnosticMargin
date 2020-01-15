@@ -21,6 +21,8 @@ namespace DiagnosticMargin
         private IWpfTextView textView;
         private ITagAggregator<ITag> aggregator;
         private bool heightManuallySet;
+        private double dpiX;
+        private double dpiY;
 
         public TagPanel(IWpfTextView textView, ITagAggregator<ITag> aggregator)
         {
@@ -30,12 +32,30 @@ namespace DiagnosticMargin
             this.textView = textView;
             this.aggregator = aggregator;
             this.viewer.Height = Math.Min(textView.ViewportHeight / 4, 150);
+
+            Loaded += TagPanel_Loaded;
+        }
+
+        private void TagPanel_Loaded(object sender, RoutedEventArgs e)
+        {
+            (dpiX, dpiY) = GetDPI(this);
+        }
+
+        public static (double dpiX, double dpiY) GetDPI(Visual visual)
+        {
+            var source = PresentationSource.FromVisual(visual);
+            var transformToDevice = source.CompositionTarget.TransformToDevice;
+            double dpiX = transformToDevice.M11;
+            double dpiY = transformToDevice.M22;
+            return (dpiX, dpiY);
         }
 
         void OnThumbDragCompleted(object sender, DragCompletedEventArgs args)
         {
             this.heightManuallySet = true;
-            double verticalChange = Math.Min(-args.VerticalChange, this.textView.ViewportHeight);
+
+            // it appears that the DragCompletedEventArgs.VerticalChange doesn't take DPI into account, so work around that.
+            double verticalChange = Math.Min(-args.VerticalChange / dpiY, this.textView.ViewportHeight);
             double newHeight = (this.viewer.Height + verticalChange);
             this.viewer.Height = Math.Max(newHeight, 0.0);
         }
