@@ -209,7 +209,7 @@ namespace DiagnosticMargin
             }
             else
             {
-                return null;
+                return tag?.ToString();
             }
         }
 
