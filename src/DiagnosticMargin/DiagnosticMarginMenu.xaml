@@ -5,9 +5,9 @@
     xmlns:local="clr-namespace:DiagnosticMargin"
     Background="Transparent">
 
-  <local:MarginMenuItem ToolTip="Diagnostic Margin" Background="Transparent">
-    <local:MarginMenuItem.Header>
+  <MenuItem ToolTip="Diagnostic Margin" Background="Transparent">
+    <MenuItem.Header>
       <Rectangle Width="16" Height="16" Fill="Transparent" />
-    </local:MarginMenuItem.Header>
-  </local:MarginMenuItem>
+    </MenuItem.Header>
+  </MenuItem>
 </Menu>

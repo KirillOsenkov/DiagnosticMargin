@@ -7,29 +7,21 @@
     Orientation="Horizontal"
     ToolTip="{Binding Path=TipText, Mode=OneTime}">
 
-    <StackPanel.Resources>
-        <Style x:Key="barStyle">
-            <Setter Property="Control.Background" Value="Transparent" />
-            <Setter Property="Control.BorderBrush" Value="Transparent" />
-        </Style>
-    </StackPanel.Resources>
+    <TextBlock Padding="3" Width="80" Text="{Binding Path=ContentTypeText, Mode=OneWay}" ToolTip="ContentType" />
+    <TextBlock Padding="3" Width="40" Text="{Binding Path=VersionText, Mode=OneWay}" ToolTip="Version number" />
+    <TextBlock Padding="3" Width="40" Text="{Binding Path=ReiteratedText, Mode=OneWay}" ToolTip="Reiterated version number" />
+    <TextBlock Padding="3" Width="50" Text="{Binding Path=PositionText, Mode=OneWay}" ToolTip="Caret position" />
+    <TextBlock Padding="3" Width="50" Text="{Binding Path=LengthText, Mode=OneWay}" ToolTip="Length" />
 
-    <TextBlock Style="{StaticResource barStyle}" Padding="3" Width="80" Text="{Binding Path=ContentTypeText, Mode=OneWay}" ToolTip="ContentType" />
-    <TextBlock Style="{StaticResource barStyle}" Padding="3" Width="40" Text="{Binding Path=VersionText, Mode=OneWay}" ToolTip="Version number" />
-    <TextBlock Style="{StaticResource barStyle}" Padding="3" Width="40" Text="{Binding Path=ReiteratedText, Mode=OneWay}" ToolTip="Reiterated version number" />
-    <TextBlock Style="{StaticResource barStyle}" Padding="3" Width="50" Text="{Binding Path=PositionText, Mode=OneWay}" ToolTip="Caret position" />
-    <TextBlock Style="{StaticResource barStyle}" Padding="3" Width="50" Text="{Binding Path=LengthText, Mode=OneWay}" ToolTip="Length" />
-
-
-    <StackPanel x:Name="SelectionPanel" Style="{StaticResource barStyle}" ToolTip="Current selection" Orientation="Horizontal" Width="100">
+    <StackPanel x:Name="SelectionPanel" ToolTip="Current selection" Orientation="Horizontal" Width="100">
     </StackPanel>
 
-    <CheckBox Style="{StaticResource barStyle}" Margin="2.5" Checked="RorCheck" Unchecked="RorUncheck" ToolTip="Highlight read only regions">RO </CheckBox>
+    <CheckBox Margin="2.5" Checked="RorCheck" Unchecked="RorUncheck" ToolTip="Highlight read only regions">RO </CheckBox>
 
-    <Button Style="{StaticResource barStyle}" Click="PropertiesButtonClick" ToolTip="Contents of property bag">Properties</Button>
-    <Button Style="{StaticResource barStyle}" Click="ShowButtonClick" ToolTip="Save buffer contents to file">Show</Button>
-    <Button Style="{StaticResource barStyle}" Click="SaveButtonClick" ToolTip="Save buffer contents to file">Save</Button>
-    <Button Style="{StaticResource barStyle}" Click="SnapshotsButtonClick" ToolTip="Display version numbers of uncollected snapshots">Snapshots</Button>
-    <TextBlock x:Name="SpansLabel" Padding="3" Style="{StaticResource barStyle}" Text="{Binding Path=SpansText, Mode=OneWay}" ToolTip="Projection source span count" />
-    <TextBlock x:Name="EncodingLabel" Padding="3" Style="{StaticResource barStyle}" Text="{Binding Path=EncodingText, Mode=OneWay}" ToolTip="Encoding" />
+    <Button Click="PropertiesButtonClick" ToolTip="Contents of property bag">Properties</Button>
+    <Button Click="ShowButtonClick" ToolTip="Save buffer contents to file">Show</Button>
+    <Button Click="SaveButtonClick" ToolTip="Save buffer contents to file">Save</Button>
+    <Button Click="SnapshotsButtonClick" ToolTip="Display version numbers of uncollected snapshots">Snapshots</Button>
+    <TextBlock x:Name="SpansLabel" Padding="3" Text="{Binding Path=SpansText, Mode=OneWay}" ToolTip="Projection source span count" />
+    <TextBlock x:Name="EncodingLabel" Padding="3" Text="{Binding Path=EncodingText, Mode=OneWay}" ToolTip="Encoding" />
 </StackPanel>

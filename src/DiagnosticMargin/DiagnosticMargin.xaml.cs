@@ -52,7 +52,7 @@ namespace DiagnosticMargin
                 PanelManagers[r] = new PanelManager(this, r);
             }
 
-            Background = new SolidColorBrush(Colors.GreenYellow);
+            //Background = new SolidColorBrush(Colors.GreenYellow);
             this.isInitialized = true;
         }
 

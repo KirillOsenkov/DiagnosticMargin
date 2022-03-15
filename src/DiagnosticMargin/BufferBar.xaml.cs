@@ -135,7 +135,7 @@ namespace DiagnosticMargin
 
             SolidColorBrush brush = new SolidColorBrush(textBuffer is IElisionBuffer ? Colors.LightBlue : (textBuffer is IProjectionBuffer ? Colors.LightGreen : Colors.LightGray));
             brush.Freeze();
-            Background = brush;
+            //Background = brush;
 
             ITextDataModel tdm = this.textView.TextDataModel;
             ITextViewModel tvm = this.textView.TextViewModel;

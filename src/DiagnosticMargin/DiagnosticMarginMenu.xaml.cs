@@ -38,7 +38,7 @@ namespace DiagnosticMargin
             InitializeComponent();
             this.diagnosticMargin = this.textViewHost.GetTextViewMargin(DiagnosticMargin.MarginName) as DiagnosticMargin;
 
-            MarginMenuItem outer = Items[0] as MarginMenuItem;
+            var outer = Items[0] as MenuItem;
 
             if (this.diagnosticMargin == null)
             {
@@ -54,7 +54,7 @@ namespace DiagnosticMargin
 
                 for (int r = 0; r < this.factories.Count; ++r)
                 {
-                    MarginMenuItem item = new MarginMenuItem();
+                    var item = new MenuItem();
                     item.IsCheckable = true;
                     item.Header = this.factories[r].Metadata.Name;
                     item.Click += this.diagnosticMargin.PanelManagers[r].Click;

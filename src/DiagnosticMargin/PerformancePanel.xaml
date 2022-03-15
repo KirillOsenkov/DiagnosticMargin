@@ -6,17 +6,11 @@
     Height="20.0"
     Orientation="Horizontal">
 
-    <StackPanel.Resources>
-        <Style x:Key="barStyle">
-            <Setter Property="Control.Background" Value="Transparent" />
-        </Style>
-    </StackPanel.Resources>
+    <Button Click="ScrollDownButtonClick">Scroll Down</Button>
+    <Button Click="LineScrollDownButtonClick">Line Scroll Down</Button>
+    <Button Click="PageScrollDownButtonClick">Page Scroll Down</Button>
 
-    <Button Style="{StaticResource barStyle}" Click="ScrollDownButtonClick">Scroll Down</Button>
-    <Button Style="{StaticResource barStyle}" Click="LineScrollDownButtonClick">Line Scroll Down</Button>
-    <Button Style="{StaticResource barStyle}" Click="PageScrollDownButtonClick">Page Scroll Down</Button>
-
-    <Button Style="{StaticResource barStyle}" Click="ScrollUpButtonClick">Scroll Up</Button>
-    <Button Style="{StaticResource barStyle}" Click="LineScrollUpButtonClick">Line Scroll Up</Button>
-    <Button Style="{StaticResource barStyle}" Click="PageScrollUpButtonClick">Page Scroll Up</Button>
+    <Button Click="ScrollUpButtonClick">Scroll Up</Button>
+    <Button Click="LineScrollUpButtonClick">Line Scroll Up</Button>
+    <Button Click="PageScrollUpButtonClick">Page Scroll Up</Button>
 </StackPanel>

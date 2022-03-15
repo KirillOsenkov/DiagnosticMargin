@@ -4,25 +4,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:DiagnosticMargin"
     Height="20.0"
-    Orientation="Horizontal"
-    Background="Khaki">
+    Orientation="Horizontal">
 
-    <StackPanel.Resources>
-        <Style x:Key="barStyle">
-            <Setter Property="Control.Background" Value="Transparent" />
-            <Setter Property="Control.BorderBrush" Value="Transparent" />
-        </Style>
-    </StackPanel.Resources>
+    <TextBlock Padding="3" Width="60" Text="{Binding Path=ContentTypeText, Mode=OneWay}" ToolTip="ContentType of Text Data Model" />
+    <TextBlock Padding="3" Text="{Binding Path=RolesText, Mode=OneWay}" ToolTip="Text View Roles" />
 
-    <TextBlock Style="{StaticResource barStyle}" Padding="3" Width="60" Text="{Binding Path=ContentTypeText, Mode=OneWay}" ToolTip="ContentType of Text Data Model" />
-    <TextBlock Style="{StaticResource barStyle}" Padding="3" Text="{Binding Path=RolesText, Mode=OneWay}" ToolTip="Text View Roles" />
+    <TextBlock Padding="3" Width="40" Text="{Binding Path=ViewportLeftText, Mode=OneWay}" ToolTip="Coordinate of left side of viewport" />
+    <TextBlock Padding="3" Width="40" Text="{Binding Path=ViewportTopText, Mode=OneWay}" ToolTip="Coordinate of top of viewport" />
 
-    <TextBlock Style="{StaticResource barStyle}" Padding="3" Width="40" Text="{Binding Path=ViewportLeftText, Mode=OneWay}" ToolTip="Coordinate of left side of viewport" />
-    <TextBlock Style="{StaticResource barStyle}" Padding="3" Width="40" Text="{Binding Path=ViewportTopText, Mode=OneWay}" ToolTip="Coordinate of top of viewport" />
+    <TextBlock Padding="3" Width="40" Text="{Binding Path=LayoutText, Mode=OneWay}" ToolTip="Layouts" />
+    <TextBlock Padding="3" Text="{Binding Path=LayoutNewText, Mode=OneWay}" ToolTip="New or Reformatted lines in last layout" />
+    <TextBlock Padding="3" Text="{Binding Path=LayoutTransText, Mode=OneWay}" ToolTip="Translated lines in last layout" />
 
-    <TextBlock Style="{StaticResource barStyle}" Padding="3" Width="40" Text="{Binding Path=LayoutText, Mode=OneWay}" ToolTip="Layouts" />
-    <TextBlock Style="{StaticResource barStyle}" Padding="3" Text="{Binding Path=LayoutNewText, Mode=OneWay}" ToolTip="New or Reformatted lines in last layout" />
-    <TextBlock Style="{StaticResource barStyle}" Padding="3" Text="{Binding Path=LayoutTransText, Mode=OneWay}" ToolTip="Translated lines in last layout" />
-
-    <Button Style="{StaticResource barStyle}" Click="PropertiesButtonClick" ToolTip="Contents of property bag">Properties</Button>
+    <Button Click="PropertiesButtonClick" ToolTip="Contents of property bag">Properties</Button>
 </StackPanel>
