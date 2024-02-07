@@ -20,17 +20,19 @@ namespace DiagnosticMargin
     {
         private IWpfTextView textView;
         private ITagAggregator<ITag> aggregator;
+        private IClassifier classifier;
         private bool heightManuallySet;
         private double dpiX;
         private double dpiY;
 
-        public TagPanel(IWpfTextView textView, ITagAggregator<ITag> aggregator)
+        public TagPanel(IWpfTextView textView, ITagAggregator<ITag> aggregator, IClassifier classifier)
         {
             InitializeComponent();
             DataContext = this;
 
             this.textView = textView;
             this.aggregator = aggregator;
+            this.classifier = classifier;
             this.viewer.Height = Math.Min(textView.ViewportHeight / 4, 150);
 
             Loaded += TagPanel_Loaded;
@@ -89,7 +91,8 @@ namespace DiagnosticMargin
             tagger.RemoveTagSpans(s => true);
             this.treeView.Items.Clear();
 
-            if (this.textView.Selection.SelectedSpans.Count == 0)
+            var selectedSpans = this.textView.Selection.SelectedSpans;
+            if (selectedSpans.Count == 0)
             {
                 return;
             }
@@ -102,7 +105,15 @@ namespace DiagnosticMargin
 
             Dictionary<Type, List<IMappingTagSpan<ITag>>> tagSpansByType = new Dictionary<Type, List<IMappingTagSpan<ITag>>>();
 
-            foreach (var tagSpan in this.aggregator.GetTags(this.textView.Selection.SelectedSpans))
+            var tags = this.aggregator.GetTags(selectedSpans);
+
+            var classifications = this.classifier.GetClassificationSpans(
+                new SnapshotSpan(
+                    selectedSpans[0].Snapshot,
+                    selectedSpans[0].Start,
+                    selectedSpans.Last().End - selectedSpans[0].Start));
+
+            foreach (var tagSpan in tags)
             {
                 Type type = tagSpan.Tag.GetType();
 
@@ -114,6 +125,33 @@ namespace DiagnosticMargin
                     tagSpansByType[type] = new List<IMappingTagSpan<ITag>>();
 
                 tagSpansByType[type].Add(tagSpan);
+            }
+
+            if (classifications.Count > 0)
+            {
+                var classificationItem = new TreeViewItem
+                {
+                    Header = $"Classifications ({classifications.Count})"
+                };
+                treeView.Items.Add(classificationItem);
+
+                foreach (var classification in classifications)
+                {
+                    TreeViewItem item = new TreeViewItem
+                    {
+                        Header = $"{classification.Span.Span} {classification.ClassificationType.Classification}"
+                    };
+
+                    classificationItem.Items.Add(item);
+                    var snapshotSpan = classification.Span;
+
+                    item.Selected += (sender, args) =>
+                    {
+                        tagger.RemoveTagSpans(s => true);
+                        tagger.CreateTagSpan(snapshotSpan.Snapshot.CreateTrackingSpan(snapshotSpan, SpanTrackingMode.EdgeExclusive), new CurrentTagMarker());
+                        args.Handled = true;
+                    };
+                }
             }
 
             foreach (var type in tagSpansByType.Keys.OrderBy(type => type.Name))
